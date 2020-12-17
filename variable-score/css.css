@@ -45,10 +45,14 @@
   
   .score i {
     font-style: normal;
+    overflow: hidden;
   }
   
   .score i::before {
-    content: "0";
+    display: block;
+    content: "0123456789";
+    width: 1em;
+    word-break: break-all;
     animation-name: score;
     animation-delay: 0;
     animation-direction: normal;
@@ -112,37 +116,37 @@
   
   @keyframes score {
     0% {
-      content: "0";
+      transform: translateY(0);
     }
     10% {
-      content: "1";
+      transform: translateY(-10%);
     }
     20% {
-      content: "2";
+      transform: translateY(-20%);
     }
     30% {
-      content: "3";
+      transform: translateY(-30%);
     }
     40% {
-      content: "4";
+      transform: translateY(-40%);
     }
     50% {
-      content: "5";
+      transform: translateY(-50%);
     }
     60% {
-      content: "6";
+      transform: translateY(-60%);
     }
     70% {
-      content: "7";
+      transform: translateY(-70%);
     }
     80% {
-      content: "8";
+      transform: translateY(-80%);
     }
     90% {
-      content: "9";
+      transform: translateY(-90%);
     }
     100% {
-      content: "9";
+      transform: translateY(-90%);
     }
   }
 
