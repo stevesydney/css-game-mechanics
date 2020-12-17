@@ -1,34 +1,46 @@
+:root {
+  --animation-base-duration: 1000ms;
+  --animation-iteration-count: infinite;
+  font-family: monospace;
+  background-color: #000;
+}
+
+:root *,
+:root *::before,
+:root *::after {
+  box-sizing: border-box;
+}
+
 .width {
     width: 0%;
-    height: 40px;
-    background-color: red;
-    animation-name: stretch;
+    height: calc(100vh/3);
+    position: absolute;
+    bottom: calc(100vh/3);
+    left: 0;
+    background-color: currentColor;
+    animation-name: stretch, colour;
     animation-delay: 0;
     animation-direction: normal;
-    animation-duration: 10000ms;
-    animation-fill-mode: none;
-    animation-iteration-count: infinite;
+    animation-duration: var(--animation-base-duration);
+    animation-fill-mode: both;
+    animation-iteration-count: var(--animation-iteration-count);
     animation-play-state: running;
-    animation-timing-function: linear;
-    position: relative;
+    animation-timing-function: ease-in;
   }
-  
-  .object {
-    width: 40px;
-    height: 40px;
-    background-color: #000;
-    border-radius: 50%;
-    position: absolute;
-    left: 0;
-    transition: left 2s ease;
-  }
-  
+
   .score {
-    font-family: monospace;
+    background-color: #000000;
+    color: #eeeeee;
     text-align: center;
-    line-height: 40px;
-    color: #fff;
-    font-size: 8px;
+    line-height: calc(100vh/3);
+    height: calc(100vh/3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: calc(100vh/6);
+    display: flex;
+    justify-content: space-around;
   }
   
   .score i {
@@ -40,35 +52,62 @@
     animation-name: score;
     animation-delay: 0;
     animation-direction: normal;
-    animation-duration: 10000ms;
-    animation-fill-mode: none;
-    animation-iteration-count: infinite;
+    animation-duration: var(--animation-base-duration);
+    animation-fill-mode: both;
+    animation-iteration-count: var(--animation-iteration-count);
     animation-play-state: running;
-    animation-timing-function: linear;
+    animation-timing-function: steps(1, end);
   }
   
   .score i:nth-child(2)::before {
-    animation-duration: 1000ms;
+    animation-duration: calc(var(--animation-base-duration) / 10);
   }
   
   .score i:nth-child(3)::before {
-    animation-duration: 100ms;
+    animation-duration: calc(var(--animation-base-duration) / 100);
   }
   
   .score i:nth-child(4)::before {
-    animation-duration: 10ms;
+    animation-duration: calc(var(--animation-base-duration) / 1000);
   }
-  
-  .width:hover .object {
-    left: calc(100% - 40px);
+
+  .score i:nth-child(5)::before {
+    animation-duration: calc(var(--animation-base-duration) / 10000);
   }
+
+  .button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: calc(100vh/6);
+    background-color: #333333;
+    color: #eeeeee;
+    text-align: center;
+    line-height: calc(100vh/3);
+    height: calc(100vh/3);
+  }
+  .button:active {
+    background-color: #000000;
+  }
+
+  .button::before {
+    content: "Stop!";
+  }
+
+
   
-  .width:hover {
+  #stop {
+    display: none;
+  }
+
+  #stop:checked ~ .width,
+  #stop:checked ~ .score i::before {
     animation-play-state: paused;
   }
   
-  .width:hover .score i::before {
-    animation-play-state: paused;
+  #stop:checked ~ .button::before {
+    content: "Go!";
   }
   
   @keyframes score {
@@ -102,18 +141,28 @@
     90% {
       content: "9";
     }
+    100% {
+      content: "9";
+    }
+  }
+
+  @keyframes colour {
+    0% {
+      color: red;
+    }
+    50% {
+      color: orange;
+    }
+    100% {
+      color: green;
+    }
   }
   
   @keyframes stretch {
     0% {
       width: 0%;
-      background-color: red;
-    }
-    50% {
-      background-color: orange;
     }
     100% {
       width: 100%;
-      background-color: green;
     }
   }
