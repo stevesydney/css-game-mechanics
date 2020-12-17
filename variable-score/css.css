@@ -1,0 +1,119 @@
+.width {
+    width: 0%;
+    height: 40px;
+    background-color: red;
+    animation-name: stretch;
+    animation-delay: 0;
+    animation-direction: normal;
+    animation-duration: 10000ms;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: linear;
+    position: relative;
+  }
+  
+  .object {
+    width: 40px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    transition: left 2s ease;
+  }
+  
+  .score {
+    font-family: monospace;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-size: 8px;
+  }
+  
+  .score i {
+    font-style: normal;
+  }
+  
+  .score i::before {
+    content: "0";
+    animation-name: score;
+    animation-delay: 0;
+    animation-direction: normal;
+    animation-duration: 10000ms;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: linear;
+  }
+  
+  .score i:nth-child(2)::before {
+    animation-duration: 1000ms;
+  }
+  
+  .score i:nth-child(3)::before {
+    animation-duration: 100ms;
+  }
+  
+  .score i:nth-child(4)::before {
+    animation-duration: 10ms;
+  }
+  
+  .width:hover .object {
+    left: calc(100% - 40px);
+  }
+  
+  .width:hover {
+    animation-play-state: paused;
+  }
+  
+  .width:hover .score i::before {
+    animation-play-state: paused;
+  }
+  
+  @keyframes score {
+    0% {
+      content: "0";
+    }
+    10% {
+      content: "1";
+    }
+    20% {
+      content: "2";
+    }
+    30% {
+      content: "3";
+    }
+    40% {
+      content: "4";
+    }
+    50% {
+      content: "5";
+    }
+    60% {
+      content: "6";
+    }
+    70% {
+      content: "7";
+    }
+    80% {
+      content: "8";
+    }
+    90% {
+      content: "9";
+    }
+  }
+  
+  @keyframes stretch {
+    0% {
+      width: 0%;
+      background-color: red;
+    }
+    50% {
+      background-color: orange;
+    }
+    100% {
+      width: 100%;
+      background-color: green;
+    }
+  }
